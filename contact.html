@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Send a booking enquiry | Your Budget Hospitality</title>
+  <meta name="description" content="Send your dates and group size for any Your Budget Hospitality resort or villa. We confirm availability and the final price.">
+  <meta name="theme-color" content="#2F6CAB">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..700&family=Figtree:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="data.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body data-page="contact">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img src="ybh-mark.png" alt="" width="44" height="44">
+        <span>Your Budget<br>Hospitality</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i><span class="sr-only">Menu</span>
+      </button>
+      <nav class="nav-menu" id="navMenu" aria-label="Main">
+        <a class="nav-link" href="properties.html">All stays</a>
+        <a class="nav-link" href="properties.html?type=resort">Resorts</a>
+        <a class="nav-link" href="properties.html?type=villa">Villas</a>
+        <a class="nav-link" href="index.html#places">Places</a>
+        <a class="nav-link" href="contact.html" aria-current="page">Contact</a>
+        <a class="btn btn-primary btn-sm" href="contact.html">Send enquiry</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="wrap">
+        <h1>Send a booking enquiry</h1>
+        <p>Share your dates and group size. We'll check availability and get back to you with the final price.</p>
+      </div>
+    </section>
+
+    <section class="section section-results">
+      <div class="wrap contact-grid">
+        <div class="panel">
+          <form class="form" id="enquiryForm">
+            <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="form-grid">
+              <div class="c6">
+                <label for="fProperty">Stay</label>
+                <select class="input" id="fProperty" name="property"></select>
+              </div>
+              <div class="c2">
+                <label for="fCheckin">Check-in</label>
+                <input class="input" type="date" id="fCheckin" name="checkin" required>
+              </div>
+              <div class="c2">
+                <label for="fCheckout">Check-out</label>
+                <input class="input" type="date" id="fCheckout" name="checkout" required>
+              </div>
+              <div class="c2">
+                <label for="fGuestCount">Guests</label>
+                <input class="input" type="number" id="fGuestCount" name="guests" min="1" max="60" value="2" inputmode="numeric" required>
+              </div>
+              <div class="c3">
+                <label for="fName">Your name</label>
+                <input class="input" type="text" id="fName" name="name" autocomplete="name" required>
+              </div>
+              <div class="c3">
+                <label for="fPhone">Phone or WhatsApp number</label>
+                <input class="input" type="tel" id="fPhone" name="phone" autocomplete="tel" minlength="10" required>
+              </div>
+              <div class="c6">
+                <label for="fEmail">Email <span class="hint">(optional)</span></label>
+                <input class="input" type="email" id="fEmail" name="email" autocomplete="email">
+              </div>
+              <div class="c6">
+                <label for="fMessage">Anything else? <span class="hint">(optional)</span></label>
+                <textarea class="input" id="fMessage" name="message" placeholder="Budget, meals, pets, special occasion"></textarea>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit" id="submitBtn">Send enquiry</button>
+              <button class="btn btn-whatsapp" type="button" id="waBtn"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>Send on WhatsApp</button>
+            </div>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <aside class="aside">
+          <div class="panel preview" id="stayPreview" hidden></div>
+          <div class="panel">
+            <h2 class="aside-title">Talk to us</h2>
+            <ul class="contact-list">
+              <li><i class="fa-solid fa-phone" aria-hidden="true"></i><div><span>Call</span><a data-site="phone" href="#">Phone</a></div></li>
+              <li><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><div><span>WhatsApp</span><a data-site="whatsapp" href="#">Chat with us</a></div></li>
+              <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><div><span>Email</span><a data-site="email" href="#">Email</a></div></li>
+              <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><div><span>Office</span><p data-site="address"></p></div></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer on-dark">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img src="ybh-mark.png" alt="" width="44" height="44">
+            <span>Your Budget<br>Hospitality</span>
+          </a>
+          <p>Affordable resorts and villas, with the nightly price shown upfront.</p>
+        </div>
+        <div>
+          <h2 class="footer-title">Stays</h2>
+          <ul>
+            <li><a href="properties.html">All stays</a></li>
+            <li><a href="properties.html?type=resort">Resorts</a></li>
+            <li><a href="properties.html?type=villa">Villas</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer-title">Places</h2>
+          <ul id="footerPlaces"></ul>
+        </div>
+        <div>
+          <h2 class="footer-title">Contact</h2>
+          <ul>
+            <li><a data-site="phone" href="#">Phone</a></li>
+            <li><a data-site="email" href="#">Email</a></li>
+            <li><a data-site="whatsapp" href="#">WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Your Budget Hospitality</p>
+        <p><a href="contact.html">Send a booking enquiry</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" data-site="whatsapp" href="#" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+</body>
+</html>

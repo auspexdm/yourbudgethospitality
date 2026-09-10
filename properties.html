@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All stays | Your Budget Hospitality</title>
+  <meta name="description" content="Browse affordable resorts and villas by place, stay type, group size and budget.">
+  <meta name="theme-color" content="#2F6CAB">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..700&family=Figtree:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="data.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body data-page="stays">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img src="ybh-mark.png" alt="" width="44" height="44">
+        <span>Your Budget<br>Hospitality</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i><span class="sr-only">Menu</span>
+      </button>
+      <nav class="nav-menu" id="navMenu" aria-label="Main">
+        <a class="nav-link" href="properties.html" aria-current="page">All stays</a>
+        <a class="nav-link" href="properties.html?type=resort">Resorts</a>
+        <a class="nav-link" href="properties.html?type=villa">Villas</a>
+        <a class="nav-link" href="index.html#places">Places</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+        <a class="btn btn-primary btn-sm" href="contact.html">Send enquiry</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="wrap">
+        <h1 id="pageTitle">All stays</h1>
+        <p id="pageSub">Filter by place, stay type, group size and budget. Every listing shows its nightly price.</p>
+      </div>
+    </section>
+
+    <div class="filters">
+      <div class="wrap filters-inner">
+        <div class="filter">
+          <span class="filter-label" id="typeLabel">Stay type</span>
+          <div class="seg" role="group" aria-labelledby="typeLabel">
+            <button type="button" data-filter-type="" aria-pressed="true">All</button>
+            <button type="button" data-filter-type="resort" aria-pressed="false">Resorts</button>
+            <button type="button" data-filter-type="villa" aria-pressed="false">Villas</button>
+          </div>
+        </div>
+        <div class="filter">
+          <label for="fPlace">Place</label>
+          <select class="input" id="fPlace"><option value="">All places</option></select>
+        </div>
+        <div class="filter">
+          <label for="fGuests">Guests</label>
+          <select class="input" id="fGuests">
+              <option value="">Any group size</option>
+              <option value="2">2 or more</option>
+              <option value="4">4 or more</option>
+              <option value="6">6 or more</option>
+              <option value="8">8 or more</option>
+              <option value="10">10 or more</option>
+              <option value="15">15 or more</option>
+          </select>
+        </div>
+        <div class="filter">
+          <label for="fBudget">Budget per night</label>
+          <select class="input" id="fBudget">
+            <option value="">Any budget</option>
+            <option value="2500">Up to &#8377;2,500</option>
+            <option value="4000">Up to &#8377;4,000</option>
+            <option value="6000">Up to &#8377;6,000</option>
+            <option value="8000">Up to &#8377;8,000</option>
+          </select>
+        </div>
+        <div class="filter filter-sort">
+          <label for="fSort">Sort by</label>
+          <select class="input" id="fSort">
+            <option value="price-asc">Price, low to high</option>
+            <option value="price-desc">Price, high to low</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <section class="section section-results">
+      <div class="wrap">
+        <p class="results-count" id="resultCount" aria-live="polite"></p>
+        <div class="stay-grid" id="stayGrid"></div>
+        <div class="empty" id="emptyState" hidden>
+          <h2>No stays match these filters</h2>
+          <p>Try another place or a higher budget, or clear the filters to see every stay.</p>
+          <button class="btn btn-outline" type="button" id="clearFilters">Clear filters</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="cta on-dark">
+          <img src="ybh-mark.png" alt="" width="96" height="96">
+          <div>
+            <h2>Planning a group trip?</h2>
+            <p>Tell us your dates, group size and budget, and we'll suggest stays that fit.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-whatsapp" data-site="whatsapp" href="#"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>Chat on WhatsApp</a>
+            <a class="btn btn-light-outline" href="contact.html">Send enquiry</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer on-dark">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <img src="ybh-mark.png" alt="" width="44" height="44">
+            <span>Your Budget<br>Hospitality</span>
+          </a>
+          <p>Affordable resorts and villas, with the nightly price shown upfront.</p>
+        </div>
+        <div>
+          <h2 class="footer-title">Stays</h2>
+          <ul>
+            <li><a href="properties.html">All stays</a></li>
+            <li><a href="properties.html?type=resort">Resorts</a></li>
+            <li><a href="properties.html?type=villa">Villas</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer-title">Places</h2>
+          <ul id="footerPlaces"></ul>
+        </div>
+        <div>
+          <h2 class="footer-title">Contact</h2>
+          <ul>
+            <li><a data-site="phone" href="#">Phone</a></li>
+            <li><a data-site="email" href="#">Email</a></li>
+            <li><a data-site="whatsapp" href="#">WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Your Budget Hospitality</p>
+        <p><a href="contact.html">Send a booking enquiry</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" data-site="whatsapp" href="#" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+</body>
+</html>
