@@ -89,8 +89,29 @@ const STAYS = [
       { name: 'Private pool room', price: 4500 },
       { name: 'Family room', price: 8000 }
     ],
-    highlights: [],
+    highlights: ['Swimming pool', 'Rooms with a private plunge pool', 'Family rooms'],
     image: '',
+    images: [
+      'images/parshuram-wada-01-pool-and-property.jpg',
+      'images/parshuram-wada-02-pool-evening.jpg',
+      'images/parshuram-wada-03-pool-night.jpg',
+      'images/parshuram-wada-04-pool-daytime.jpg',
+      'images/parshuram-wada-05-pool.jpg',
+      'images/parshuram-wada-06-pool-from-balcony.jpg',
+      'images/parshuram-wada-07-courtyard.jpg',
+      'images/parshuram-wada-08-courtyard-evening.jpg',
+      'images/parshuram-wada-09-entrance-sign.jpg',
+      'images/parshuram-wada-10-room-entrances.jpg',
+      'images/parshuram-wada-11-room-entrances-night.jpg',
+      'images/parshuram-wada-12-corridor.jpg',
+      'images/parshuram-wada-13-family-room.jpg',
+      'images/parshuram-wada-14-family-room.jpg',
+      'images/parshuram-wada-15-family-room.jpg',
+      'images/parshuram-wada-16-deluxe-room.jpg',
+      'images/parshuram-wada-17-deluxe-room.jpg',
+      'images/parshuram-wada-18-room.jpg',
+      'images/parshuram-wada-19-private-pool-room.jpg'
+    ],
     featured: true
   },
   {
