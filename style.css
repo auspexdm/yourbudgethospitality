@@ -252,6 +252,14 @@ h1, h2, h3 {
 }
 .stay-media { position: relative; aspect-ratio: 4 / 3; background: var(--mist); }
 .stay-media > svg, .stay-media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.media-btn { position: absolute; inset: 0; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+.photo-count {
+  position: absolute; right: .85rem; bottom: .85rem; pointer-events: none;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .28rem .7rem; border-radius: 999px;
+  background: rgba(15, 43, 58, .78); color: #fff; font-size: .8rem; font-weight: 600;
+}
+.photo-count i { font-size: .75rem; }
 .stay-tag {
   position: absolute; top: .85rem; left: .85rem;
   padding: .3rem .75rem; border-radius: 999px; font-size: .8125rem; font-weight: 600;
@@ -425,3 +433,29 @@ textarea.input { min-height: 120px; resize: vertical; line-height: 1.5; }
   box-shadow: 0 12px 26px -10px rgba(15, 43, 58, .55);
 }
 .wa-float:hover { background: #1EBE5A; }
+
+/* ---------- Photo gallery ---------- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  padding: 1.25rem; background: rgba(9, 22, 30, .97); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.lb-stage { margin: 0; display: grid; gap: .75rem; max-width: min(1100px, 92vw); }
+.lb-stage img { width: 100%; max-height: 78vh; object-fit: contain; border-radius: 14px; background: #0B1C26; }
+.lb-caption { color: #C9D6DD; font-size: .9rem; text-align: center; }
+.lb-nav, .lb-close {
+  flex: none; width: 46px; height: 46px; display: grid; place-items: center;
+  border: 1px solid rgba(255, 255, 255, .3); border-radius: 50%;
+  background: rgba(255, 255, 255, .08); color: #fff; font-size: 1.05rem; cursor: pointer;
+}
+.lb-nav:hover, .lb-close:hover { background: rgba(255, 255, 255, .2); }
+.lb-close { position: absolute; top: 1rem; right: 1rem; }
+.lightbox :focus-visible { outline-color: var(--leaf); }
+@media (max-width: 700px) {
+  .lightbox { padding: .75rem; }
+  .lb-stage { max-width: 100%; }
+  .lb-stage img { max-height: 66vh; }
+  .lb-nav { position: absolute; bottom: 1.5rem; }
+  .lb-prev { left: 22%; }
+  .lb-next { right: 22%; }
+}

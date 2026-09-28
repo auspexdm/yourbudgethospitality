@@ -76,11 +76,85 @@
     </svg>`;
   }
 
-  function media(s) {
-    const img = s.image
-      ? `<img src="${esc(s.image)}" alt="${esc(s.name)}, ${esc(s.place)}" loading="lazy" onerror="this.remove()">`
+  const photos = s => (s.images && s.images.length ? s.images : (s.image ? [s.image] : []));
+
+  function media(s, interactive = true) {
+    const list = photos(s);
+    const img = list.length
+      ? `<img src="${esc(list[0])}" alt="${esc(s.name)}, ${esc(s.place)}" loading="lazy" onerror="this.remove()">`
       : '';
-    return art(s.type) + img;
+    const opener = (interactive && list.length)
+      ? `<button class="media-btn" type="button" data-gallery="${esc(s.slug)}" aria-label="View photos of ${esc(s.name)}"></button>
+         <span class="photo-count"><i class="fa-solid fa-camera" aria-hidden="true"></i>${plural(list.length, 'photo', 'photos')}</span>`
+      : '';
+    return art(s.type) + img + opener;
+  }
+
+  /* Photo gallery */
+  const gallery = { el: null, list: [], index: 0, name: '', opener: null };
+
+  function paintGallery() {
+    const img = gallery.el.querySelector('img');
+    img.src = gallery.list[gallery.index];
+    img.alt = `${gallery.name}, photo ${gallery.index + 1}`;
+    gallery.el.querySelector('.lb-caption').textContent = `${gallery.name} — ${gallery.index + 1} of ${gallery.list.length}`;
+    const single = gallery.list.length < 2;
+    gallery.el.querySelectorAll('.lb-nav').forEach(b => { b.hidden = single; });
+  }
+
+  function stepGallery(dir) {
+    gallery.index = (gallery.index + dir + gallery.list.length) % gallery.list.length;
+    paintGallery();
+  }
+
+  function closeGallery() {
+    if (!gallery.el) return;
+    gallery.el.hidden = true;
+    document.body.style.overflow = '';
+    if (gallery.opener) gallery.opener.focus();
+  }
+
+  function openGallery(slug, opener) {
+    const s = STAYS.find(x => x.slug === slug);
+    if (!s) return;
+    const list = photos(s);
+    if (!list.length) return;
+
+    if (!gallery.el) {
+      const el = document.createElement('div');
+      el.className = 'lightbox';
+      el.setAttribute('role', 'dialog');
+      el.setAttribute('aria-modal', 'true');
+      el.setAttribute('aria-label', 'Photo gallery');
+      el.hidden = true;
+      el.innerHTML = `
+        <button class="lb-close" type="button" aria-label="Close gallery"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        <button class="lb-nav lb-prev" type="button" aria-label="Previous photo"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+        <figure class="lb-stage"><img src="" alt=""><figcaption class="lb-caption"></figcaption></figure>
+        <button class="lb-nav lb-next" type="button" aria-label="Next photo"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>`;
+      document.body.appendChild(el);
+      gallery.el = el;
+      el.addEventListener('click', e => {
+        if (e.target === el || e.target.closest('.lb-close')) closeGallery();
+        else if (e.target.closest('.lb-prev')) stepGallery(-1);
+        else if (e.target.closest('.lb-next')) stepGallery(1);
+      });
+      document.addEventListener('keydown', e => {
+        if (!gallery.el || gallery.el.hidden) return;
+        if (e.key === 'Escape') closeGallery();
+        if (e.key === 'ArrowLeft') stepGallery(-1);
+        if (e.key === 'ArrowRight') stepGallery(1);
+      });
+    }
+
+    gallery.list = list;
+    gallery.index = 0;
+    gallery.name = s.name;
+    gallery.opener = opener || null;
+    gallery.el.hidden = false;
+    document.body.style.overflow = 'hidden';
+    paintGallery();
+    gallery.el.querySelector('.lb-close').focus();
   }
 
   function stayCard(s) {
@@ -114,6 +188,11 @@
 
   /* ---------- Every page ---------- */
   function initChrome() {
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('[data-gallery]');
+      if (btn) openGallery(btn.dataset.gallery, btn);
+    });
+
     const header = $('#siteHeader');
     const onScroll = () => header && header.classList.toggle('scrolled', window.scrollY > 8);
     onScroll();
@@ -270,7 +349,7 @@
       const s = STAYS.find(x => x.slug === sel.value);
       if (!s) { preview.hidden = true; preview.innerHTML = ''; return; }
       preview.hidden = false;
-      preview.innerHTML = `<div class="preview-media">${media(s)}</div>
+      preview.innerHTML = `<div class="preview-media">${media(s, false)}</div>
         <div>
           <p class="stay-place"><i class="fa-solid fa-location-dot" aria-hidden="true"></i>${esc(s.area ? `${s.area}, ${s.place}` : s.place)}</p>
           <h2 class="preview-name">${esc(s.name)}</h2>

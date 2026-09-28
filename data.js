@@ -26,6 +26,10 @@
      highlights up to 3 short points
      image      'images/your-photo.jpg'  (leave '' to show the
                 built-in illustration until photos are ready)
+     images     optional photo gallery, e.g.
+                ['images/a.jpg', 'images/b.jpg']
+                the first one is the card photo, the rest open in
+                the gallery when a guest taps the photo
      featured   true = show on the home page
 
    ADD A PLACE → add a line to PLACES. The order here is the order
@@ -129,8 +133,16 @@ const STAYS = [
     guests: 10,
     guestsText: 'Sleeps 8-10',
     rooms: 0,
-    highlights: [],
+    highlights: ['Private pool', 'AC bedrooms', 'Garden and pool deck'],
     image: '',
+    images: [
+      'images/sunandha-1-pool.jpg',
+      'images/sunandha-2-pool-aerial.jpg',
+      'images/sunandha-3-living-room.jpg',
+      'images/sunandha-4-bedroom.jpg',
+      'images/sunandha-5-bedroom.jpg',
+      'images/sunandha-6-bedroom.jpg'
+    ],
     featured: true
   },
   {
