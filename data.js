@@ -193,8 +193,25 @@ const STAYS = [
     guests: 10,
     guestsText: 'Sleeps 8-10',
     rooms: 4,
-    highlights: [],
+    highlights: ['Private pool', 'Terrace with hill view', 'AC bedrooms'],
     image: '',
+    images: [
+      'images/4-bhk-villa-01-pool.jpg',
+      'images/4-bhk-villa-02-exterior-day.jpg',
+      'images/4-bhk-villa-03-exterior-night.jpg',
+      'images/4-bhk-villa-04-veranda.jpg',
+      'images/4-bhk-villa-05-terrace-hill-view.jpg',
+      'images/4-bhk-villa-06-living-room.jpg',
+      'images/4-bhk-villa-07-living-room.jpg',
+      'images/4-bhk-villa-08-living-and-dining.jpg',
+      'images/4-bhk-villa-09-dining-area.jpg',
+      'images/4-bhk-villa-10-living-room-wide.jpg',
+      'images/4-bhk-villa-11-bedroom.jpg',
+      'images/4-bhk-villa-12-bedroom.jpg',
+      'images/4-bhk-villa-13-bedroom.jpg',
+      'images/4-bhk-villa-14-bathroom.jpg',
+      'images/4-bhk-villa-15-bathroom.jpg'
+    ],
     featured: true
   }
 ];
