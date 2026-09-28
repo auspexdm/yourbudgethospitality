@@ -140,8 +140,25 @@ const STAYS = [
     guests: 10,
     guestsText: 'Sleeps 8-10',
     rooms: 0,
-    highlights: [],
+    highlights: ['Private pool with waterfall', 'Garden lawn and gazebo', 'Indoor lounge and dining'],
     image: '',
+    images: [
+      'images/vintage-villa-01-pool-night.jpg',
+      'images/vintage-villa-02-pool-sunset.jpg',
+      'images/vintage-villa-03-garden-and-pool.jpg',
+      'images/vintage-villa-04-villa-evening.jpg',
+      'images/vintage-villa-05-villa-garden.jpg',
+      'images/vintage-villa-06-villa-entrance.jpg',
+      'images/vintage-villa-07-veranda.jpg',
+      'images/vintage-villa-08-living-room.jpg',
+      'images/vintage-villa-09-living-room-staircase.jpg',
+      'images/vintage-villa-10-living-and-dining.jpg',
+      'images/vintage-villa-11-seating-nook.jpg',
+      'images/vintage-villa-12-dining-room.jpg',
+      'images/vintage-villa-13-dining-area.jpg',
+      'images/vintage-villa-14-bedroom.jpg',
+      'images/vintage-villa-15-lounge-corner.jpg'
+    ],
     featured: true
   },
   {
