@@ -126,8 +126,23 @@ const STAYS = [
     roomTypes: [
       { name: 'Deluxe room', price: 3000 }
     ],
-    highlights: [],
+    highlights: ['Swimming pool', 'AC rooms with TV', 'Covered veranda'],
     image: '',
+    images: [
+      'images/nirvana-01-entrance-evening.jpg',
+      'images/nirvana-02-pool.jpg',
+      'images/nirvana-03-veranda.jpg',
+      'images/nirvana-04-exterior.jpg',
+      'images/nirvana-05-room.jpg',
+      'images/nirvana-06-room.jpg',
+      'images/nirvana-07-room.jpg',
+      'images/nirvana-08-room.jpg',
+      'images/nirvana-09-room.jpg',
+      'images/nirvana-10-room.jpg',
+      'images/nirvana-11-room.jpg',
+      'images/nirvana-12-room.jpg',
+      'images/nirvana-13-bathroom.jpg'
+    ],
     featured: true
   },
   {
