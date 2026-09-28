@@ -18,6 +18,11 @@
                 villa  = max guests in the whole villa
      rooms      resort = number of rooms
                 villa  = number of bedrooms (shown as BHK)
+                set 0 to hide it until you know the number
+     roomTypes  optional room categories and prices, e.g.
+                [{ name: 'Deluxe room', price: 4000 }]
+                the card then shows "From <lowest price>"
+     guestsText optional override, e.g. 'Sleeps 8-10'
      highlights up to 3 short points
      image      'images/your-photo.jpg'  (leave '' to show the
                 built-in illustration until photos are ready)
@@ -26,14 +31,15 @@
    ADD A PLACE → add a line to PLACES. The order here is the order
    places appear on the site. Places with no stays are hidden.
 
-   ⚠ Everything below is SAMPLE content. Replace with real details.
+   ⚠ Every stay below is set to place: 'Alibag'. Correct any that
+     are somewhere else, and fill in area, rooms and photos.
    ================================================================== */
 
 const SITE = {
   name: 'Your Budget Hospitality',
-  phoneDisplay: '+91 00000 00000',   // shown on the site
-  phone: '+910000000000',            // used for tap-to-call
-  whatsapp: '910000000000',          // country code + number, no + or spaces
+  phoneDisplay: '+91 73856 03511',   // shown on the site
+  phone: '+917385603511',            // used for tap-to-call
+  whatsapp: '917385603511',          // country code + number, no + or spaces
   email: 'info@yourbudgethospitality.com',
   address: 'Alibag, Maharashtra',
   web3formsKey: 'YOUR_WEB3FORMS_ACCESS_KEY' // from web3forms.com
@@ -48,107 +54,97 @@ const PLACES = [
 
 const STAYS = [
   {
-    slug: 'sea-breeze-resort',
-    name: 'Sea Breeze Resort',
+    slug: 'moonland-resort',
+    name: 'Moonland Resort',
     type: 'resort',
     place: 'Alibag',
-    area: 'Nagaon',
-    price: 2499,
+    area: '',
+    price: 4000,
     guests: 3,
     rooms: 12,
-    highlights: ['Swimming pool', 'Breakfast included', 'Walk to the beach'],
+    roomTypes: [
+      { name: 'Deluxe room', price: 4000 },
+      { name: 'Private pool room', price: 5000 },
+      { name: 'Family room', price: 6000 }
+    ],
+    highlights: [],
     image: '',
     featured: true
   },
   {
-    slug: 'coconut-grove-villa',
-    name: 'Coconut Grove Villa',
+    slug: 'parshuram-wada',
+    name: 'Parshuram Wada',
+    type: 'resort',
+    place: 'Alibag',
+    area: '',
+    price: 3500,
+    guests: 3,
+    rooms: 0,
+    roomTypes: [
+      { name: 'Deluxe room', price: 3500 },
+      { name: 'Private pool room', price: 4500 },
+      { name: 'Family room', price: 8000 }
+    ],
+    highlights: [],
+    image: '',
+    featured: true
+  },
+  {
+    slug: 'nirvana',
+    name: 'Nirvana',
+    type: 'resort',
+    place: 'Alibag',
+    area: '',
+    price: 3000,
+    guests: 3,
+    rooms: 0,
+    roomTypes: [
+      { name: 'Deluxe room', price: 3000 }
+    ],
+    highlights: [],
+    image: '',
+    featured: true
+  },
+  {
+    slug: 'vintage-villa',
+    name: 'Vintage Villa',
     type: 'villa',
     place: 'Alibag',
-    area: 'Kihim',
-    price: 6999,
+    area: '',
+    price: 20000,
     guests: 10,
-    rooms: 3,
-    highlights: ['Private pool', 'Kitchen access', 'Garden lawn'],
+    guestsText: 'Sleeps 8-10',
+    rooms: 0,
+    highlights: [],
     image: '',
     featured: true
   },
   {
-    slug: 'kashid-sands-resort',
-    name: 'Kashid Sands Resort',
-    type: 'resort',
-    place: 'Kashid',
-    area: '',
-    price: 2999,
-    guests: 3,
-    rooms: 10,
-    highlights: ['Beach access', 'In-house restaurant', 'Parking'],
-    image: '',
-    featured: false
-  },
-  {
-    slug: 'palm-shade-villa',
-    name: 'Palm Shade Villa',
+    slug: 'sunandha',
+    name: 'Sunandha',
     type: 'villa',
-    place: 'Kashid',
+    place: 'Alibag',
     area: '',
-    price: 5499,
-    guests: 8,
-    rooms: 2,
-    highlights: ['Private lawn', 'BBQ area', 'Pet friendly'],
+    price: 20000,
+    guests: 10,
+    guestsText: 'Sleeps 8-10',
+    rooms: 0,
+    highlights: [],
     image: '',
     featured: true
   },
   {
-    slug: 'fort-view-resort',
-    name: 'Fort View Resort',
-    type: 'resort',
-    place: 'Murud',
-    area: '',
-    price: 2199,
-    guests: 3,
-    rooms: 8,
-    highlights: ['Sea-view rooms', 'Konkan thali', 'Parking'],
-    image: '',
-    featured: false
-  },
-  {
-    slug: 'mango-orchard-villa',
-    name: 'Mango Orchard Villa',
+    slug: '4-bhk-villa',
+    name: '4 BHK Villa',
     type: 'villa',
-    place: 'Murud',
+    place: 'Alibag',
     area: '',
-    price: 4499,
-    guests: 8,
-    rooms: 2,
-    highlights: ['Orchard setting', 'Caretaker on site', 'Home-cooked meals'],
+    price: 20000,
+    guests: 10,
+    guestsText: 'Sleeps 8-10',
+    rooms: 4,
+    highlights: [],
     image: '',
-    featured: false
-  },
-  {
-    slug: 'red-earth-resort',
-    name: 'Red Earth Resort',
-    type: 'resort',
-    place: 'Dapoli',
-    area: 'Karde',
-    price: 1999,
-    guests: 4,
-    rooms: 9,
-    highlights: ['Family rooms', 'Near Karde beach', 'Breakfast included'],
-    image: '',
-    featured: false
-  },
-  {
-    slug: 'hilltop-villa-dapoli',
-    name: 'Hilltop Villa',
-    type: 'villa',
-    place: 'Dapoli',
-    area: '',
-    price: 3999,
-    guests: 6,
-    rooms: 2,
-    highlights: ['Valley view', 'Terrace seating', 'Parking'],
-    image: '',
-    featured: false
+    featured: true
   }
 ];

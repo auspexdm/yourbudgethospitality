@@ -273,6 +273,11 @@ h1, h2, h3 {
   display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem;
 }
 .stay-body .stay-highlights { margin-bottom: .6rem; }
+.room-list { list-style: none; margin: .2rem 0 .4rem; padding: 0; display: grid; gap: .3rem; font-size: .9rem; }
+.room-list li { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding-bottom: .3rem; border-bottom: 1px dotted var(--line); }
+.room-list li:last-child { border-bottom: 0; }
+.room-list span { color: var(--ink-soft); }
+.room-list strong { font-weight: 700; }
 .price strong { display: block; font-size: 1.4rem; font-weight: 700; line-height: 1.15; }
 .price span { font-size: .8125rem; color: var(--ink-soft); }
 

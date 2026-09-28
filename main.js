@@ -15,10 +15,15 @@
     villa: { label: 'Villa', plural: 'Villas', sub: 'The whole house to yourselves. Good for friends and big families.' }
   };
 
-  const capacity = s => (s.type === 'resort' ? s.guests * s.rooms : s.guests);
+  const capacity = s => (s.type === 'resort' ? s.guests * (s.rooms || 1) : s.guests);
   const priceUnit = s => (s.type === 'villa' ? 'per night, whole villa' : 'per room, per night');
-  const roomsLabel = s => (s.type === 'villa' ? `${s.rooms} BHK` : plural(s.rooms, 'room', 'rooms'));
-  const guestsLabel = s => (s.type === 'villa' ? `Sleeps ${s.guests}` : `${s.guests} guests per room`);
+  const roomsLabel = s => (!s.rooms ? '' : (s.type === 'villa' ? `${s.rooms} BHK` : plural(s.rooms, 'room', 'rooms')));
+  const guestsLabel = s => s.guestsText || (s.type === 'villa' ? `Sleeps ${s.guests}` : `${s.guests} guests per room`);
+  const priceLabel = s => ((s.roomTypes && s.roomTypes.length > 1) ? `From ${rupees(s.price)}` : rupees(s.price));
+  const bookLink = s => waLink(`Hi ${SITE.name}, I'd like to book ${s.name} in ${s.place}. Please share availability and the total price.`);
+  const roomList = s => (!s.roomTypes || !s.roomTypes.length ? '' :
+    `<ul class="room-list">${s.roomTypes.map(r =>
+      `<li><span>${esc(r.name)}</span><strong>${rupees(r.price)}</strong></li>`).join('')}</ul>`);
   const minPrice = list => (list.length ? Math.min(...list.map(s => s.price)) : 0);
   const waLink = text => `https://wa.me/${SITE.whatsapp}${text ? '?text=' + encodeURIComponent(text) : ''}`;
 
@@ -82,6 +87,7 @@
     const t = TYPES[s.type] || TYPES.resort;
     const where = s.area ? `${s.area}, ${s.place}` : s.place;
     const hl = (s.highlights || []).slice(0, 3).map(h => `<li>${esc(h)}</li>`).join('');
+    const rooms = roomsLabel(s);
     return `<article class="stay-card">
       <div class="stay-media">${media(s)}<span class="stay-tag tag-${esc(s.type)}">${t.label}</span></div>
       <div class="stay-body">
@@ -89,12 +95,13 @@
         <h3 class="stay-name">${esc(s.name)}</h3>
         <ul class="stay-facts">
           <li><i class="fa-solid fa-user-group" aria-hidden="true"></i>${guestsLabel(s)}</li>
-          <li><i class="fa-solid fa-bed" aria-hidden="true"></i>${roomsLabel(s)}</li>
+          ${rooms ? `<li><i class="fa-solid fa-bed" aria-hidden="true"></i>${rooms}</li>` : ''}
         </ul>
+        ${roomList(s)}
         ${hl ? `<ul class="stay-highlights">${hl}</ul>` : ''}
         <div class="stay-foot">
-          <p class="price"><strong>${rupees(s.price)}</strong><span>${priceUnit(s)}</span></p>
-          <a class="btn btn-primary btn-sm" href="contact.html?property=${encodeURIComponent(s.slug)}" aria-label="Book ${esc(s.name)}">Book</a>
+          <p class="price"><strong>${priceLabel(s)}</strong><span>${priceUnit(s)}</span></p>
+          <a class="btn btn-whatsapp btn-sm" href="${bookLink(s)}" target="_blank" rel="noopener" aria-label="Book ${esc(s.name)} on WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>Book</a>
         </div>
       </div>
     </article>`;
@@ -267,7 +274,7 @@
         <div>
           <p class="stay-place"><i class="fa-solid fa-location-dot" aria-hidden="true"></i>${esc(s.area ? `${s.area}, ${s.place}` : s.place)}</p>
           <h2 class="preview-name">${esc(s.name)}</h2>
-          <p class="price"><strong>${rupees(s.price)}</strong><span>${priceUnit(s)}</span></p>
+          <p class="price"><strong>${priceLabel(s)}</strong><span>${priceUnit(s)}</span></p>
         </div>`;
     };
     sel.addEventListener('change', showPreview);
