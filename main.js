@@ -211,7 +211,6 @@
     }
 
     $$('[data-site="phone"]').forEach(a => { a.textContent = SITE.phoneDisplay; a.href = 'tel:' + SITE.phone; });
-    $$('[data-site="email"]').forEach(a => { a.textContent = SITE.email; a.href = 'mailto:' + SITE.email; });
     $$('[data-site="address"]').forEach(el => { el.textContent = SITE.address; });
     $$('[data-site="whatsapp"]').forEach(a => {
       a.href = waLink(`Hi ${SITE.name}, I'd like to know more about your stays.`);
@@ -406,58 +405,17 @@
       `Guests: ${d.guests}`,
       `Name: ${d.name}`,
       `Phone: ${d.phone}`,
-      d.email && `Email: ${d.email}`,
       d.message && `Note: ${d.message}`
     ].filter(Boolean).join('\n');
 
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
-      if (!form.reportValidity()) return;
-      if (!SITE.web3formsKey || SITE.web3formsKey.startsWith('YOUR_')) {
-        setStatus('err', 'Email enquiries are not set up yet. Add the Web3Forms access key in data.js, or use Send on WhatsApp.');
-        return;
-      }
-      const d = collect();
-      const btn = $('#submitBtn');
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            access_key: SITE.web3formsKey,
-            subject: `New booking enquiry: ${d.stay}`,
-            from_name: SITE.name,
-            name: d.name,
-            phone: d.phone,
-            email: d.email || undefined,
-            stay: d.stay,
-            check_in: d.checkin,
-            check_out: d.checkout,
-            guests: d.guests,
-            message: d.message,
-            botcheck: d.botcheck
-          })
-        });
-        const out = await res.json();
-        if (!res.ok || !out.success) throw new Error(out.message || 'Request failed');
-        form.reset();
-        showPreview();
-        syncOut();
-        setStatus('ok', `Enquiry sent. We'll contact you on ${d.phone} to confirm availability and the final price.`);
-      } catch (err) {
-        setStatus('err', "The enquiry didn't send. Check your internet connection and try again, or use Send on WhatsApp.");
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Send enquiry';
-      }
-    });
-
-    $('#waBtn').addEventListener('click', () => {
+    const send = () => {
       if (!form.reportValidity()) return;
       window.open(waLink(summary(collect())), '_blank', 'noopener');
-    });
+      setStatus('ok', "Your enquiry is ready in WhatsApp. Press send there and we'll reply with availability and the final price.");
+    };
+
+    form.addEventListener('submit', e => { e.preventDefault(); send(); });
+
   }
 
   document.addEventListener('DOMContentLoaded', () => {

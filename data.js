@@ -44,9 +44,7 @@ const SITE = {
   phoneDisplay: '+91 73856 03511',   // shown on the site
   phone: '+917385603511',            // used for tap-to-call
   whatsapp: '917385603511',          // country code + number, no + or spaces
-  email: 'info@yourbudgethospitality.com',
-  address: 'Alibag, Maharashtra',
-  web3formsKey: 'YOUR_WEB3FORMS_ACCESS_KEY' // from web3forms.com
+  address: 'Alibag, Maharashtra'
 };
 
 const PLACES = [

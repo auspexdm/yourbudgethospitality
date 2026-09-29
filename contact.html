@@ -44,7 +44,7 @@
     <section class="page-head">
       <div class="wrap">
         <h1>Send a booking enquiry</h1>
-        <p>Share your dates and group size. We'll check availability and get back to you with the final price.</p>
+        <p>Fill in your dates and group size, and the details open in WhatsApp ready to send. We reply there with availability and the final price.</p>
       </div>
     </section>
 
@@ -52,7 +52,6 @@
       <div class="wrap contact-grid">
         <div class="panel">
           <form class="form" id="enquiryForm">
-            <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="form-grid">
               <div class="c6">
                 <label for="fProperty">Stay</label>
@@ -74,13 +73,9 @@
                 <label for="fName">Your name</label>
                 <input class="input" type="text" id="fName" name="name" autocomplete="name" required>
               </div>
-              <div class="c3">
-                <label for="fPhone">Phone or WhatsApp number</label>
-                <input class="input" type="tel" id="fPhone" name="phone" autocomplete="tel" minlength="10" required>
-              </div>
               <div class="c6">
-                <label for="fEmail">Email <span class="hint">(optional)</span></label>
-                <input class="input" type="email" id="fEmail" name="email" autocomplete="email">
+                <label for="fPhone">WhatsApp number</label>
+                <input class="input" type="tel" id="fPhone" name="phone" autocomplete="tel" minlength="10" required>
               </div>
               <div class="c6">
                 <label for="fMessage">Anything else? <span class="hint">(optional)</span></label>
@@ -88,8 +83,7 @@
               </div>
             </div>
             <div class="form-actions">
-              <button class="btn btn-primary" type="submit" id="submitBtn">Send enquiry</button>
-              <button class="btn btn-whatsapp" type="button" id="waBtn"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>Send on WhatsApp</button>
+              <button class="btn btn-whatsapp" type="submit" id="waBtn"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>Send on WhatsApp</button>
             </div>
             <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
           </form>
@@ -102,7 +96,6 @@
             <ul class="contact-list">
               <li><i class="fa-solid fa-phone" aria-hidden="true"></i><div><span>Call</span><a data-site="phone" href="#">Phone</a></div></li>
               <li><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><div><span>WhatsApp</span><a data-site="whatsapp" href="#">Chat with us</a></div></li>
-              <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><div><span>Email</span><a data-site="email" href="#">Email</a></div></li>
               <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><div><span>Office</span><p data-site="address"></p></div></li>
             </ul>
           </div>
@@ -137,7 +130,6 @@
           <h2 class="footer-title">Contact</h2>
           <ul>
             <li><a data-site="phone" href="#">Phone</a></li>
-            <li><a data-site="email" href="#">Email</a></li>
             <li><a data-site="whatsapp" href="#">WhatsApp</a></li>
           </ul>
         </div>
