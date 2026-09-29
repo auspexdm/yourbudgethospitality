@@ -71,8 +71,30 @@ const STAYS = [
       { name: 'Private pool room', price: 5000 },
       { name: 'Family room', price: 6000 }
     ],
-    highlights: [],
+    highlights: ['Swimming pool', 'Rooms with a private plunge pool', 'Garden restaurant'],
     image: '',
+    images: [
+      'images/moonland-resort-01-entrance.jpg',
+      'images/moonland-resort-02-pool-night.jpg',
+      'images/moonland-resort-03-pool-night.jpg',
+      'images/moonland-resort-04-pool-night.jpg',
+      'images/moonland-resort-05-cottages-sunset.jpg',
+      'images/moonland-resort-06-restaurant.jpg',
+      'images/moonland-resort-07-lawn-evening.jpg',
+      'images/moonland-resort-08-garden-seating.jpg',
+      'images/moonland-resort-09-grounds-night.jpg',
+      'images/moonland-resort-10-cottages-day.jpg',
+      'images/moonland-resort-11-cottages.jpg',
+      'images/moonland-resort-12-cottage.jpg',
+      'images/moonland-resort-13-reception-lounge.jpg',
+      'images/moonland-resort-14-private-pool-room.jpg',
+      'images/moonland-resort-15-private-pool-room.jpg',
+      'images/moonland-resort-16-room.jpg',
+      'images/moonland-resort-17-room.jpg',
+      'images/moonland-resort-18-room.jpg',
+      'images/moonland-resort-19-twin-room.jpg',
+      'images/moonland-resort-20-twin-room.jpg'
+    ],
     featured: true
   },
   {
