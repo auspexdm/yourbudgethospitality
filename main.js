@@ -15,7 +15,9 @@
     villa: { label: 'Villa', plural: 'Villas', sub: 'The whole house to yourselves. Good for friends and big families.' }
   };
 
-  const capacity = s => (s.type === 'resort' ? s.guests * (s.rooms || 1) : s.guests);
+  // resorts can combine rooms, so their capacity is guests-per-room x rooms
+  // (unknown room count = treat as enough for any group)
+  const capacity = s => (s.type === 'resort' ? s.guests * (s.rooms || 99) : s.guests);
   const priceUnit = s => (s.type === 'villa' ? 'per night, whole villa' : 'per room, per night');
   const roomsLabel = s => (!s.rooms ? '' : (s.type === 'villa' ? `${s.rooms} BHK` : plural(s.rooms, 'room', 'rooms')));
   const guestsLabel = s => s.guestsText || (s.type === 'villa' ? `Sleeps ${s.guests}` : `${s.guests} guests per room`);
@@ -294,13 +296,20 @@
       });
     };
 
+    const byPrice = (a, b) => (state.sort === 'price-desc' ? b.price - a.price : a.price - b.price);
+
     const render = () => {
-      const list = STAYS.filter(s =>
+      const matching = STAYS.filter(s =>
         (!state.type || s.type === state.type) &&
         (!state.place || s.place === state.place) &&
-        (!state.guests || capacity(s) >= Number(state.guests)) &&
         (!state.budget || s.price <= Number(state.budget))
-      ).sort((a, b) => (state.sort === 'price-desc' ? b.price - a.price : a.price - b.price));
+      ).sort(byPrice);
+
+      // Group size never hides a stay. Stays that fit come first, the rest are
+      // shown below as options to ask about (rooms can be combined, villas booked together).
+      const guests = Number(state.guests) || 0;
+      const list = guests ? matching.filter(s => capacity(s) >= guests) : matching;
+      const others = guests ? matching.filter(s => capacity(s) < guests) : [];
 
       segBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filterType === state.type)));
 
@@ -312,9 +321,16 @@
         (state.type ? TYPES[state.type].sub : 'Filter by place, stay type, group size and budget. Every listing shows its nightly price.');
       document.title = `${title} | ${SITE.name}`;
 
-      $('#resultCount').textContent = list.length ? `Showing ${plural(list.length, 'stay', 'stays')}` : '';
+      $('#resultCount').textContent = list.length
+        ? `Showing ${plural(list.length, 'stay', 'stays')}${guests ? ` for ${guests} guests` : ''}`
+        : (others.length ? `No stay on its own fits ${guests} guests` : '');
       $('#stayGrid').innerHTML = list.map(stayCard).join('');
-      $('#emptyState').hidden = list.length > 0;
+      $('#moreGrid').innerHTML = others.map(stayCard).join('');
+      $('#moreWrap').hidden = others.length === 0;
+      $('#moreNote').textContent = others.length
+        ? `These sleep fewer than ${guests} guests on their own. Resorts can add rooms and villas can be booked together, so message us with your dates and we'll work it out.`
+        : '';
+      $('#emptyState').hidden = (list.length + others.length) > 0;
 
       const q = new URLSearchParams();
       Object.entries(state).forEach(([k, v]) => { if (v && v !== defaults[k]) q.set(k, v); });

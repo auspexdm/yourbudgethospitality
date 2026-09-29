@@ -344,6 +344,9 @@ h1, h2, h3 {
 .seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
 .results-count { margin-bottom: 1.25rem; color: var(--ink-soft); }
 .section-results { padding-top: 2rem; }
+.more-head { margin: 3.5rem 0 1.75rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+.more-head h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); }
+.more-head p { margin-top: .6rem; max-width: 46rem; color: var(--ink-soft); }
 .empty { padding: 3.5rem 1.5rem; text-align: center; border: 1.5px dashed var(--line); border-radius: 20px; }
 .empty h2 { font-size: 2rem; }
 .empty p { margin: .6rem auto 1.5rem; max-width: 30rem; color: var(--ink-soft); }
