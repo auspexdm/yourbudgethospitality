@@ -164,7 +164,7 @@
     const where = s.area ? `${s.area}, ${s.place}` : s.place;
     const hl = (s.highlights || []).slice(0, 3).map(h => `<li>${esc(h)}</li>`).join('');
     const rooms = roomsLabel(s);
-    return `<article class="stay-card">
+    return `<article class="stay-card" id="${esc(s.slug)}">
       <div class="stay-media">${media(s)}<span class="stay-tag tag-${esc(s.type)}">${t.label}</span></div>
       <div class="stay-body">
         <p class="stay-place"><i class="fa-solid fa-location-dot" aria-hidden="true"></i>${esc(where)}</p>
@@ -313,7 +313,7 @@
       segBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filterType === state.type)));
 
       const typeWord = state.type ? TYPES[state.type].plural : 'Stays';
-      const title = state.place ? `${typeWord} in ${state.place}` : (state.type ? typeWord : 'All stays');
+      const title = state.place ? `${typeWord} in ${state.place}` : (state.type ? `${typeWord} in Alibag` : 'Resorts and villas in Alibag');
       $('#pageTitle').textContent = title;
       const place = PLACES.find(p => p.name === state.place);
       $('#pageSub').textContent = (place && place.blurb) ? `${place.blurb}.` :
@@ -333,7 +333,7 @@
 
       const q = new URLSearchParams();
       Object.entries(state).forEach(([k, v]) => { if (v && v !== defaults[k]) q.set(k, v); });
-      history.replaceState(null, '', q.toString() ? `?${q}` : location.pathname);
+      history.replaceState(null, '', q.toString() ? `${location.pathname}?${q}` : location.pathname);
     };
 
     segBtns.forEach(b => b.addEventListener('click', () => { state.type = b.dataset.filterType; render(); }));
