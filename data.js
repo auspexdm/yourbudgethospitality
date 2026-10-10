@@ -1,7 +1,10 @@
 /* ==================================================================
    YOUR BUDGET HOSPITALITY — site settings and listings
    ------------------------------------------------------------------
-   This is the only file you need to edit to add a resort, villa or
+   After changing listings, run `node render-seo.cjs` and commit the
+   refreshed index.html and properties.html so crawlers see the changes.
+
+   Edit this file to add a resort, villa or
    place. The home page, stays page, enquiry form and footer all read
    from here, so a new stay shows up everywhere automatically.
 
