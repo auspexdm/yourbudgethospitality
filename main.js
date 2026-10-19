@@ -168,7 +168,7 @@
       <div class="stay-media">${media(s)}<span class="stay-tag tag-${esc(s.type)}">${t.label}</span></div>
       <div class="stay-body">
         <p class="stay-place"><i class="fa-solid fa-location-dot" aria-hidden="true"></i>${esc(where)}</p>
-        <h3 class="stay-name">${esc(s.name)}</h3>
+        <h3 class="stay-name"><a class="stay-link" href="/stays/${esc(s.slug)}.html">${esc(s.name)}</a></h3>
         <ul class="stay-facts">
           <li><i class="fa-solid fa-user-group" aria-hidden="true"></i>${guestsLabel(s)}</li>
           ${rooms ? `<li><i class="fa-solid fa-bed" aria-hidden="true"></i>${rooms}</li>` : ''}

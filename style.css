@@ -462,3 +462,38 @@ textarea.input { min-height: 120px; resize: vertical; line-height: 1.5; }
   .lb-prev { left: 22%; }
   .lb-next { right: 22%; }
 }
+
+/* ---------- Stay detail + type pages ---------- */
+.stay-link { color: inherit; text-decoration: none; }
+.stay-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.crumbs ol { list-style: none; margin: 0 0 1.1rem; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem; font-size: .9rem; color: var(--ink-soft); }
+.crumbs li + li::before { content: '/'; margin-right: .35rem; opacity: .6; }
+.crumbs a { color: var(--ink-soft); }
+.stay-head .stay-place { margin-bottom: .6rem; }
+.stay-gallery { position: relative; display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: .6rem; aspect-ratio: 16 / 7; border-radius: 20px; overflow: hidden; }
+.g-item { margin: 0; min-height: 0; background: var(--mist); }
+.g-item img { width: 100%; height: 100%; object-fit: cover; }
+.g-main { grid-row: span 2; }
+.g-all { position: absolute; right: 1rem; bottom: 1rem; background: #fff; color: var(--ink); gap: .5rem; }
+.stay-detail { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 2.5rem; align-items: start; margin-top: 2.5rem; }
+.stay-copy h2 { font-size: clamp(1.7rem, 3vw, 2.2rem); margin: 2rem 0 1rem; }
+.stay-copy h2:first-child { margin-top: 0; }
+.stay-copy h3 { font-family: var(--sans); font-size: 1.05rem; font-weight: 700; margin: 1.4rem 0 .5rem; letter-spacing: 0; }
+.stay-copy p { color: var(--ink-soft); }
+.detail-facts { list-style: none; padding: 0; display: flex; flex-wrap: wrap; }
+.detail-facts li { display: flex; align-items: center; gap: .45rem; }
+.stay-copy .room-list { max-width: 26rem; font-size: 1rem; }
+.muted { font-size: .9rem; }
+.book-panel { position: sticky; top: calc(var(--header-h) + 1.5rem); display: grid; gap: .9rem; }
+.book-panel .price strong { font-size: 1.9rem; }
+.book-panel .btn { width: 100%; justify-content: center; }
+.book-panel p { color: var(--ink-soft); }
+.results-note { margin-top: 2rem; color: var(--ink-soft); }
+@media (max-width: 820px) {
+  .stay-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: auto; aspect-ratio: auto; }
+  .g-main { grid-column: span 2; grid-row: auto; aspect-ratio: 4 / 3; }
+  .g-item:not(.g-main) { aspect-ratio: 4 / 3; }
+  .g-item:nth-child(n+4) { display: none; }
+  .stay-detail { grid-template-columns: 1fr; }
+  .book-panel { position: static; order: -1; }
+}
