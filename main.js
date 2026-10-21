@@ -426,3 +426,4 @@
     if (page === 'contact') initContact();
   });
 })();
+/* Google Analytics 4 (Your Budget Hospitality) */(function(){var id='G-Z1VX7D3ZG2';if(window.__ga4)return;window.__ga4=1;window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){dataLayer.push(arguments);};var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+id;document.head.appendChild(s);gtag('js',new Date());gtag('config',id);})();
